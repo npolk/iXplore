@@ -15,7 +15,6 @@
 		7DD031211D0EAE5D00681639 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD031201D0EAE5D00681639 /* MapKit.framework */; };
 		7DD031241D0EAE9800681639 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD031231D0EAE9800681639 /* Place.swift */; };
 		7DD031291D0EB62700681639 /* SpotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD031271D0EB62700681639 /* SpotTableViewCell.swift */; };
-		7DD0312A1D0EB62700681639 /* SpotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD031281D0EB62700681639 /* SpotTableViewCell.xib */; };
 		7DD0312D1D0EB69700681639 /* star_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD0312C1D0EB69700681639 /* star_black.png */; };
 		7DD0312F1D0EB69F00681639 /* star_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD0312E1D0EB69F00681639 /* star_pink.png */; };
 /* End PBXBuildFile section */
@@ -31,7 +30,6 @@
 		7DD031201D0EAE5D00681639 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7DD031231D0EAE9800681639 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		7DD031271D0EB62700681639 /* SpotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotTableViewCell.swift; sourceTree = "<group>"; };
-		7DD031281D0EB62700681639 /* SpotTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotTableViewCell.xib; sourceTree = "<group>"; };
 		7DD0312C1D0EB69700681639 /* star_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_black.png; sourceTree = "<group>"; };
 		7DD0312E1D0EB69F00681639 /* star_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_pink.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,7 +100,6 @@
 			children = (
 				7DD0312B1D0EB67000681639 /* Star Images */,
 				7DD031271D0EB62700681639 /* SpotTableViewCell.swift */,
-				7DD031281D0EB62700681639 /* SpotTableViewCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -191,7 +188,6 @@
 				7DBFAEFB1D089050006EAD4B /* LaunchScreen.storyboard in Resources */,
 				7DD0312D1D0EB69700681639 /* star_black.png in Resources */,
 				7DBFAEF81D089050006EAD4B /* Assets.xcassets in Resources */,
-				7DD0312A1D0EB62700681639 /* SpotTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

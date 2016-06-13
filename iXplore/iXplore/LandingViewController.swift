@@ -76,7 +76,7 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
     func setupTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        tableView.registerNib(UINib(nibName: "SpotTableViewCell", bundle: nil), forCellReuseIdentifier: "SpotTableViewCell")
+        self.tableView.registerClass(SpotTableViewCell.self, forCellReuseIdentifier: "SpotTableViewCell")
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,8 +86,10 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SpotTableViewCell", forIndexPath: indexPath) as! SpotTableViewCell
         let spot = placesList[indexPath.row]
-        cell.label?.text = spot.title!
-        cell.logo?.imageFromUrl(spot.imageURL!)
+        cell.label.text = spot.title!
+        print("cell.label = \(spot.title!)")
+        cell.logo.imageFromUrl(spot.imageURL!)
+        cell.describe.text = spot.describe!
         
         //date stuff
         let dateFormatter = NSDateFormatter()

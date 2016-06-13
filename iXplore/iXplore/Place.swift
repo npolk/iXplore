@@ -26,6 +26,7 @@ class Place: NSObject, MKAnnotation {
         spot1.title = "Workshop 17"
         spot1.imageURL = "https://avatars1.githubusercontent.com/u/7220596?v=3&s=200"
         spot1.coordinate = CLLocationCoordinate2D(latitude: -33.906764,longitude: 18.4164983)
+        spot1.describe = "Classroom location"
         spot1.favorite = true
         
         let spot2 = Place ()
@@ -42,6 +43,7 @@ class Place: NSObject, MKAnnotation {
         spot4.title = "Never@Home"
         spot4.imageURL = "http://neverathomeworld.com/wp-content/uploads/2014/12/Never@home-Logo-625x230.jpg"
         spot4.coordinate = CLLocationCoordinate2D(latitude: -33.907731,longitude: 18.409117)
+        spot4.describe = "Lodging Area"
         
         let spot5 = Place ()
         spot5.title = "Cape Town Stadium"
