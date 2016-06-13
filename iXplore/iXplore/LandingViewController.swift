@@ -62,6 +62,17 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let spot = placesList[indexPath.row]
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let mapCenterAfterMove = CLLocationCoordinate2D(latitude: self.placesList[indexPath.row].coordinate.latitude, longitude: self.placesList[indexPath.row].coordinate.longitude)
+        mapView.selectAnnotation(spot as! MKAnnotation, animated: true)
+        let span = MKCoordinateSpanMake(0.01, 0.01)
+        let region = MKCoordinateRegion(center: mapCenterAfterMove, span: span)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
