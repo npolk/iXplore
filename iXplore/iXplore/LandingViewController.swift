@@ -9,7 +9,11 @@
 import UIKit
 import MapKit
 
-class LandingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class CustomPointAnnotation: MKPointAnnotation {
+    var imageName: String!
+}
+
+class LandingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -21,9 +25,11 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         
         self.navigationController?.navigationBarHidden = true
+        
+        self.mapView.delegate = self
+        
         setupMapView()
         setupTableView()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +41,35 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.mapView.mapType = .Hybrid
         self.mapView.showsBuildings = true
         self.mapView.addAnnotations(self.placesList)
+        
+    }
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        
+        let pin = annotation as! Place
+        if !pin.favorite {
+            return nil
+        }
+        
+        if annotation is MKUserLocation {
+            //return nil so map view draws "blue dot" for standard user location
+            return nil
+        }
+        
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+            pinView!.pinTintColor = UIColor.yellowColor()
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
         
     }
     

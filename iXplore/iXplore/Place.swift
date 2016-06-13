@@ -15,6 +15,7 @@ class Place: NSObject, MKAnnotation {
     var imageURL: String?
     var describe:String? = ""
     var date = NSDate()
+    var favorite: Bool = false
     
     
     //var ratable: Bool = true
@@ -25,6 +26,7 @@ class Place: NSObject, MKAnnotation {
         spot1.title = "Workshop 17"
         spot1.imageURL = "https://avatars1.githubusercontent.com/u/7220596?v=3&s=200"
         spot1.coordinate = CLLocationCoordinate2D(latitude: -33.906764,longitude: 18.4164983)
+        spot1.favorite = true
         
         let spot2 = Place ()
         spot2.title = "Truth Coffee"
