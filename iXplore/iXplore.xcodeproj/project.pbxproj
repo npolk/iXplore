@@ -81,6 +81,7 @@
 		7DD031221D0EAE8400681639 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7DD031301D0EC95500681639 /* pictires */,
 				7DD031231D0EAE9800681639 /* Place.swift */,
 			);
 			name = Models;
@@ -113,6 +114,13 @@
 				7DD0312C1D0EB69700681639 /* star_black.png */,
 			);
 			name = "Star Images";
+			sourceTree = "<group>";
+		};
+		7DD031301D0EC95500681639 /* pictires */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = pictires;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

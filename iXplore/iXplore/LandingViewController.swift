@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class LandingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class LandingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -19,6 +19,8 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBarHidden = true
         setupMapView()
         setupTableView()
         // Do any additional setup after loading the view.
@@ -52,11 +54,28 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.label?.text = spot.title!
         cell.logo?.imageFromUrl(spot.imageURL!)
         
+        //date stuff
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
+        cell.date.text = dateFormatter.stringFromDate(spot.date)
+        
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
     }
+    
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            //add code here for when you hit delete
+            placesList.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            
+        }
+    }
+    
     
 
 }

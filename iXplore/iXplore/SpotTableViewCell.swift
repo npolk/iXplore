@@ -13,12 +13,7 @@ class SpotTableViewCell: UITableViewCell {
     
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var label: UILabel!
-    
-    
-    @IBOutlet weak var star1: UIButton!
-    @IBOutlet weak var star2: UIButton!
-    @IBOutlet weak var star3: UIButton!
-    @IBOutlet weak var star4: UIButton!
+    @IBOutlet weak var date: UILabel!
 
 
     override func awakeFromNib() {
@@ -30,13 +25,6 @@ class SpotTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    
-    func hideStars() {
-        star1.hidden = true
-        star2.hidden = true
-        star3.hidden = true
-        star4.hidden = true
     }
     
 }
