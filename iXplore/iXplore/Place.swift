@@ -14,7 +14,7 @@ class Place: NSObject, MKAnnotation, NSCoding {
     var title: String? = ""
     var imageURL: String?
     var describe:String? = ""
-    var date = NSDate()
+    var date: NSDate
     var favorite: Bool = false
     
     

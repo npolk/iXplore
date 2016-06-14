@@ -34,11 +34,15 @@ class PlacesController {
      */
     func addPlace(spot: Place) {
         //set current date
-        spot.date = NSDate()
         
         //append the new place onto the given array
         placesList.append(spot)
         
+        saveArray()
+        
+    }
+    
+    func saveArray() {
         //store in memory
         PersistenceManager.saveNSArray(placesList, fileName: "array")
         
@@ -63,5 +67,6 @@ class PlacesController {
             
         }
     }
+    
 }
 

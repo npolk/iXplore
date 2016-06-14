@@ -52,7 +52,9 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         PlacesController.sharedInstance.getPlaces()
         setupMapView()
         setupTableView()
-        print("PAGE LOADED")
+        //UPDATE TABLE
+        tableView.reloadData()
+    
         
         let plusButton : UIBarButtonItem = UIBarButtonItem(title: "+", style: UIBarButtonItemStyle.Plain, target: self, action: "openModal:")
         let logButton : UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: "returnHome:")
@@ -178,7 +180,10 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //remove place from list and delete annotation
                 self.mapView.removeAnnotation(PlacesController.sharedInstance.placesList[indexPath.row])
                 PlacesController.sharedInstance.placesList.removeAtIndex(indexPath.row)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic) }
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                //update stored array
+                PlacesController.sharedInstance.saveArray()
+            }
             alertController.addAction(OKAction)
             
             //if cancel is pressed
@@ -191,11 +196,25 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //MAKE FAVORITE
         let action2 = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
-            //delete red annotation and add yellow annotation pin
-            self.mapView.removeAnnotation(PlacesController.sharedInstance.placesList[indexPath.row])
-            PlacesController.sharedInstance.placesList[indexPath.row].favorite = true
+            //make a favorite
+            if !PlacesController.sharedInstance.placesList[indexPath.row].favorite {
+                //delete red annotation
+                self.mapView.removeAnnotation(PlacesController.sharedInstance.placesList[indexPath.row])
+                //set as favorite
+                PlacesController.sharedInstance.placesList[indexPath.row].favorite = true
             self.mapView.addAnnotation(PlacesController.sharedInstance.placesList[indexPath.row])
-            //add star to table cell!!!!!!
+                
+                //add star to table cell!!!!!!
+            }
+            
+            //unfavorite
+            else {
+                //delete yellow annotation
+                self.mapView.removeAnnotation(PlacesController.sharedInstance.placesList[indexPath.row])
+                //set as not favorite
+                PlacesController.sharedInstance.placesList[indexPath.row].favorite = false
+            self.mapView.addAnnotation(PlacesController.sharedInstance.placesList[indexPath.row])
+            }
             
         }
         action2.backgroundColor = UIColor.orangeColor()
