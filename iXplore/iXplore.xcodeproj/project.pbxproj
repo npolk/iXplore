@@ -17,6 +17,12 @@
 		7DD031291D0EB62700681639 /* SpotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD031271D0EB62700681639 /* SpotTableViewCell.swift */; };
 		7DD0312D1D0EB69700681639 /* star_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD0312C1D0EB69700681639 /* star_black.png */; };
 		7DD0312F1D0EB69F00681639 /* star_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DD0312E1D0EB69F00681639 /* star_pink.png */; };
+		7DD031591D10095100681639 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD031571D10095100681639 /* HomeScreenViewController.swift */; };
+		7DD0315A1D10095100681639 /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD031581D10095100681639 /* HomeScreenViewController.xib */; };
+		7DD0315D1D100AF600681639 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD0315B1D100AF600681639 /* LoginViewController.swift */; };
+		7DD0315E1D100AF600681639 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD0315C1D100AF600681639 /* LoginViewController.xib */; };
+		7DD031611D100CDA00681639 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD0315F1D100CDA00681639 /* RegistrationViewController.swift */; };
+		7DD031621D100CDA00681639 /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD031601D100CDA00681639 /* RegistrationViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,12 @@
 		7DD031271D0EB62700681639 /* SpotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotTableViewCell.swift; sourceTree = "<group>"; };
 		7DD0312C1D0EB69700681639 /* star_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_black.png; sourceTree = "<group>"; };
 		7DD0312E1D0EB69F00681639 /* star_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_pink.png; sourceTree = "<group>"; };
+		7DD031571D10095100681639 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		7DD031581D10095100681639 /* HomeScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenViewController.xib; sourceTree = "<group>"; };
+		7DD0315B1D100AF600681639 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7DD0315C1D100AF600681639 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		7DD0315F1D100CDA00681639 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		7DD031601D100CDA00681639 /* RegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +100,8 @@
 		7DD031251D0EB5C100681639 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7DD0311C1D0EA8F500681639 /* LandingViewController.swift */,
-				7DD0311D1D0EA8F500681639 /* LandingViewController.xib */,
-				7DD031261D0EB5E100681639 /* TableViewCell */,
+				7DD031551D1008DB00681639 /* Map/Table */,
+				7DD031541D1008B600681639 /* Onboarding */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -118,6 +129,29 @@
 			children = (
 			);
 			name = pictires;
+			sourceTree = "<group>";
+		};
+		7DD031541D1008B600681639 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				7DD031571D10095100681639 /* HomeScreenViewController.swift */,
+				7DD031581D10095100681639 /* HomeScreenViewController.xib */,
+				7DD0315B1D100AF600681639 /* LoginViewController.swift */,
+				7DD0315C1D100AF600681639 /* LoginViewController.xib */,
+				7DD0315F1D100CDA00681639 /* RegistrationViewController.swift */,
+				7DD031601D100CDA00681639 /* RegistrationViewController.xib */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		7DD031551D1008DB00681639 /* Map/Table */ = {
+			isa = PBXGroup;
+			children = (
+				7DD0311C1D0EA8F500681639 /* LandingViewController.swift */,
+				7DD0311D1D0EA8F500681639 /* LandingViewController.xib */,
+				7DD031261D0EB5E100681639 /* TableViewCell */,
+			);
+			name = Map/Table;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,9 +218,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DD0311F1D0EA8F500681639 /* LandingViewController.xib in Resources */,
+				7DD031621D100CDA00681639 /* RegistrationViewController.xib in Resources */,
 				7DD0312F1D0EB69F00681639 /* star_pink.png in Resources */,
 				7DBFAEFB1D089050006EAD4B /* LaunchScreen.storyboard in Resources */,
+				7DD0315A1D10095100681639 /* HomeScreenViewController.xib in Resources */,
 				7DD0312D1D0EB69700681639 /* star_black.png in Resources */,
+				7DD0315E1D100AF600681639 /* LoginViewController.xib in Resources */,
 				7DBFAEF81D089050006EAD4B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,10 +235,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DD0315D1D100AF600681639 /* LoginViewController.swift in Sources */,
 				7DD0311E1D0EA8F500681639 /* LandingViewController.swift in Sources */,
 				7DBFAEF11D089050006EAD4B /* AppDelegate.swift in Sources */,
 				7DD031241D0EAE9800681639 /* Place.swift in Sources */,
+				7DD031611D100CDA00681639 /* RegistrationViewController.swift in Sources */,
 				7DD031291D0EB62700681639 /* SpotTableViewCell.swift in Sources */,
+				7DD031591D10095100681639 /* HomeScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

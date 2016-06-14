@@ -14,26 +14,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var navigationController: UINavigationController?
+    var onboardingNavController: UINavigationController?
     
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        let landingViewController = LandingViewController(nibName: "LandingViewController", bundle: nil)
-        self.navigationController = UINavigationController(rootViewController: landingViewController)
-        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.makeKeyAndVisible()
-        self.window?.rootViewController = self.navigationController
         
+        navigateToHomeScreen()
         
         
         return true
     }
     
     func navigateToLandingView() {
+        let landingViewController = LandingViewController(nibName: "LandingViewController", bundle: nil)
+        self.navigationController = UINavigationController(rootViewController: landingViewController)
+        self.window?.rootViewController = self.navigationController
         
+    }
+    
+    func navigateToHomeScreen() {
+        let homeScreenViewController = HomeScreenViewController(nibName: "HomeScreenViewController", bundle: nil)
+        self.onboardingNavController = UINavigationController(rootViewController: homeScreenViewController)
+        self.window?.rootViewController = self.onboardingNavController
         
     }
 

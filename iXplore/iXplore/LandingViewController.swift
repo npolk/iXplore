@@ -86,10 +86,19 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SpotTableViewCell", forIndexPath: indexPath) as! SpotTableViewCell
         let spot = placesList[indexPath.row]
+        
+        //add label name, logo, and description to table cell
         cell.label.text = spot.title!
-        print("cell.label = \(spot.title!)")
         cell.logo.imageFromUrl(spot.imageURL!)
         cell.describe.text = spot.describe!
+        
+        //only show star if favorite
+        if placesList[indexPath.row].favorite {
+            cell.star.hidden = false
+        }
+        else {
+            cell.star.hidden = true
+        }
         
         //date stuff
         let dateFormatter = NSDateFormatter()
@@ -119,20 +128,33 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //DELETE TABLE CELL
         let action1 = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
-            //add code here for when you hit delete
-            self.mapView.removeAnnotation(self.placesList[indexPath.row])
-            self.placesList.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            //show alert asking if they are sure they want to delete
+            let alertController = UIAlertController(title: "Are you sure you want to delete \(self.placesList[indexPath.row].title!)?", message: "", preferredStyle: .Alert)
+            
+            //if delete is pressed
+            let OKAction = UIAlertAction(title: "Delete", style: .Default) { (action) in
+                //remove place from list and delete annotation
+                self.mapView.removeAnnotation(self.placesList[indexPath.row])
+                self.placesList.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic) }
+            alertController.addAction(OKAction)
+            
+            //if cancel is pressed
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in }
+            alertController.addAction(cancelAction)
+            self.presentViewController(alertController, animated: true) {}
         }
         action1.backgroundColor = UIColor.redColor()
         
         
         //MAKE FAVORITE
         let action2 = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
-            print("Action 2 tapped")
+            //delete red annotation and add yellow annotation pin
             self.mapView.removeAnnotation(self.placesList[indexPath.row])
             self.placesList[indexPath.row].favorite = true
             self.mapView.addAnnotation(self.placesList[indexPath.row])
+            //add star to table cell!!!!!!
+            
         }
         action2.backgroundColor = UIColor.orangeColor()
         
@@ -140,5 +162,15 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         return [action2, action1]
     }
     
+    
+    /*-------------------------- function to show message alert ------------------------*/
+    func showWarningAlert(title:String?, message:String?, button1:String?, button2:String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: button2, style: .Cancel) { (action) in }
+        alertController.addAction(cancelAction)
+        let OKAction = UIAlertAction(title: button1, style: .Default) { (action) in }
+        alertController.addAction(OKAction)
+        self.presentViewController(alertController, animated: true) {}
+    }
 
 }

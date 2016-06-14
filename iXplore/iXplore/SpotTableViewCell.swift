@@ -15,6 +15,7 @@ class SpotTableViewCell: UITableViewCell {
     var label = UILabel()
     var date = UILabel()
     var describe = UILabel()
+    var star = UIImageView()
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -30,8 +31,8 @@ class SpotTableViewCell: UITableViewCell {
         label = UILabel(frame: labelFrame)
         self.addSubview(label)
         
-        //date
-        let dateFrame = CGRectMake(self.frame.width - 65, 0, 100, self.frame.height/2)
+        //DATE
+        let dateFrame = CGRectMake(self.frame.width - 70, 0, 100, self.frame.height/2)
         date = UILabel(frame: dateFrame)
         date.font = date.font.fontWithSize(11)
         date.textAlignment = .Right
@@ -42,6 +43,12 @@ class SpotTableViewCell: UITableViewCell {
         describe = UILabel(frame: describeFrame)
         self.addSubview(describe)
         describe.font = describe.font.fontWithSize(11)
+        
+        //STAR (to indicate favorites)
+        let starFrame = CGRect(x: self.frame.width+30, y: 0, width: self.frame.height/2.5, height: self.frame.height/2.5)
+        star = UIImageView(frame: starFrame)
+        star.image = UIImage(named: "star_pink.png")
+        self.addSubview(star)
         
     }
     
