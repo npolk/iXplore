@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import MapKit
 
 class NewPlaceViewController: UIViewController {
+    
+    @IBOutlet weak var titleField: UITextField!
+    @IBOutlet weak var describeField: UITextField!
+    @IBOutlet weak var lat: UITextField!
+    @IBOutlet weak var long: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +33,19 @@ class NewPlaceViewController: UIViewController {
 
     }
 
+    @IBAction func saveButtonTapped(sender: AnyObject) {
+        var coord: CLLocationCoordinate2D = CLLocationCoordinate2D()
+        coord.latitude = CLLocationDegrees(Double(lat.text!)!)
+        coord.longitude = CLLocationDegrees(Double(long.text!)!)
+        
+        let newPlace = Place(title: titleField.text, date: NSDate(), coordinate: coord, describe: describeField.text)
+        PlacesController.sharedInstance.addPlace(newPlace)
+        
+        PlacesController.sharedInstance.getPlaces()
+        
+        self.dismissViewControllerAnimated(false, completion: nil)
+        
+    }
     
 
 }

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7DA1177C1D1039C000FFB558 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA1177A1D1039C000FFB558 /* NewPlaceViewController.swift */; };
 		7DA1177D1D1039C000FFB558 /* NewPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA1177B1D1039C000FFB558 /* NewPlaceViewController.xib */; };
+		7DA117801D104AF300FFB558 /* PlacesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA1177F1D104AF300FFB558 /* PlacesController.swift */; };
+		7DA117821D104EA400FFB558 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA117811D104EA400FFB558 /* UserController.swift */; };
+		7DA117841D1057AF00FFB558 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA117831D1057AF00FFB558 /* PersistanceManager.swift */; };
 		7DBFAEF11D089050006EAD4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBFAEF01D089050006EAD4B /* AppDelegate.swift */; };
 		7DBFAEF81D089050006EAD4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DBFAEF71D089050006EAD4B /* Assets.xcassets */; };
 		7DBFAEFB1D089050006EAD4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DBFAEF91D089050006EAD4B /* LaunchScreen.storyboard */; };
@@ -30,6 +33,9 @@
 /* Begin PBXFileReference section */
 		7DA1177A1D1039C000FFB558 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 		7DA1177B1D1039C000FFB558 /* NewPlaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewPlaceViewController.xib; sourceTree = "<group>"; };
+		7DA1177F1D104AF300FFB558 /* PlacesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesController.swift; sourceTree = "<group>"; };
+		7DA117811D104EA400FFB558 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		7DA117831D1057AF00FFB558 /* PersistanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		7DBFAEED1D089050006EAD4B /* iXplore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iXplore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DBFAEF01D089050006EAD4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DBFAEF71D089050006EAD4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				7DBFAEF01D089050006EAD4B /* AppDelegate.swift */,
+				7DA1177F1D104AF300FFB558 /* PlacesController.swift */,
+				7DA117811D104EA400FFB558 /* UserController.swift */,
+				7DA117831D1057AF00FFB558 /* PersistanceManager.swift */,
 				7DD031221D0EAE8400681639 /* Models */,
 				7DD031251D0EB5C100681639 /* Views */,
 				7DBFAEF71D089050006EAD4B /* Assets.xcassets */,
@@ -250,14 +259,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DA117841D1057AF00FFB558 /* PersistanceManager.swift in Sources */,
 				7DD0315D1D100AF600681639 /* LoginViewController.swift in Sources */,
 				7DD0311E1D0EA8F500681639 /* LandingViewController.swift in Sources */,
+				7DA117821D104EA400FFB558 /* UserController.swift in Sources */,
 				7DBFAEF11D089050006EAD4B /* AppDelegate.swift in Sources */,
 				7DD031241D0EAE9800681639 /* Place.swift in Sources */,
 				7DD031611D100CDA00681639 /* RegistrationViewController.swift in Sources */,
 				7DA1177C1D1039C000FFB558 /* NewPlaceViewController.swift in Sources */,
 				7DD031291D0EB62700681639 /* SpotTableViewCell.swift in Sources */,
 				7DD031591D10095100681639 /* HomeScreenViewController.swift in Sources */,
+				7DA117801D104AF300FFB558 /* PlacesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

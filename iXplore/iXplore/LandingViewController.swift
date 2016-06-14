@@ -20,16 +20,17 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     
-    var placesList: [Place] = Place.placeList()
+    //var placesList: [Place] = Place.placeList()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.mapView.delegate = self
-        
+        PlacesController.sharedInstance.getPlaces()
         setupMapView()
         setupTableView()
+        
+        self.mapView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,13 +41,18 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
     func setupMapView() {
         self.mapView.mapType = .Hybrid
         self.mapView.showsBuildings = true
-        self.mapView.addAnnotations(self.placesList)
+        self.mapView.addAnnotations(PlacesController.sharedInstance.placesList)
         
     }
     
     override func viewDidAppear(animated: Bool) {
         
         self.navigationController?.navigationBarHidden = false
+        
+        PlacesController.sharedInstance.getPlaces()
+        setupMapView()
+        setupTableView()
+        print("PAGE LOADED")
         
         let plusButton : UIBarButtonItem = UIBarButtonItem(title: "+", style: UIBarButtonItemStyle.Plain, target: self, action: "openModal:")
         let logButton : UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: "returnHome:")
@@ -114,20 +120,22 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.placesList.count
+        return PlacesController.sharedInstance.placesList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SpotTableViewCell", forIndexPath: indexPath) as! SpotTableViewCell
-        let spot = placesList[indexPath.row]
+        let spot = PlacesController.sharedInstance.placesList[indexPath.row]
         
         //add label name, logo, and description to table cell
         cell.label.text = spot.title!
-        cell.logo.imageFromUrl(spot.imageURL!)
+        if spot.imageURL != nil {
+            cell.logo.imageFromUrl(spot.imageURL!)
+        }
         cell.describe.text = spot.describe!
         
         //only show star if favorite
-        if placesList[indexPath.row].favorite {
+        if PlacesController.sharedInstance.placesList[indexPath.row].favorite {
             cell.star.hidden = false
         }
         else {
@@ -143,9 +151,9 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let spot = placesList[indexPath.row]
+        let spot = PlacesController.sharedInstance.placesList[indexPath.row]
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let mapCenterAfterMove = CLLocationCoordinate2D(latitude: self.placesList[indexPath.row].coordinate.latitude, longitude: self.placesList[indexPath.row].coordinate.longitude)
+        let mapCenterAfterMove = CLLocationCoordinate2D(latitude: PlacesController.sharedInstance.placesList[indexPath.row].coordinate.latitude, longitude: PlacesController.sharedInstance.placesList[indexPath.row].coordinate.longitude)
         mapView.selectAnnotation(spot as! MKAnnotation, animated: true)
         let span = MKCoordinateSpanMake(0.01, 0.01)
         let region = MKCoordinateRegion(center: mapCenterAfterMove, span: span)
@@ -163,13 +171,13 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         //DELETE TABLE CELL
         let action1 = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
             //show alert asking if they are sure they want to delete
-            let alertController = UIAlertController(title: "Are you sure you want to delete \(self.placesList[indexPath.row].title!)?", message: "", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Are you sure you want to delete \(PlacesController.sharedInstance.placesList[indexPath.row].title!)?", message: "", preferredStyle: .Alert)
             
             //if delete is pressed
             let OKAction = UIAlertAction(title: "Delete", style: .Default) { (action) in
                 //remove place from list and delete annotation
-                self.mapView.removeAnnotation(self.placesList[indexPath.row])
-                self.placesList.removeAtIndex(indexPath.row)
+                self.mapView.removeAnnotation(PlacesController.sharedInstance.placesList[indexPath.row])
+                PlacesController.sharedInstance.placesList.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic) }
             alertController.addAction(OKAction)
             
@@ -184,9 +192,9 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         //MAKE FAVORITE
         let action2 = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
             //delete red annotation and add yellow annotation pin
-            self.mapView.removeAnnotation(self.placesList[indexPath.row])
-            self.placesList[indexPath.row].favorite = true
-            self.mapView.addAnnotation(self.placesList[indexPath.row])
+            self.mapView.removeAnnotation(PlacesController.sharedInstance.placesList[indexPath.row])
+            PlacesController.sharedInstance.placesList[indexPath.row].favorite = true
+            self.mapView.addAnnotation(PlacesController.sharedInstance.placesList[indexPath.row])
             //add star to table cell!!!!!!
             
         }

@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         navigateToHomeScreen()
         
-        
         return true
     }
     
