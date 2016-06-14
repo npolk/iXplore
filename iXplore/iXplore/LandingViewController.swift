@@ -14,6 +14,8 @@ class CustomPointAnnotation: MKPointAnnotation {
 }
 
 class LandingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, UITextFieldDelegate {
+    
+    let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -23,8 +25,6 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.navigationBarHidden = true
         
         self.mapView.delegate = self
         
@@ -43,6 +43,40 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.mapView.addAnnotations(self.placesList)
         
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        self.navigationController?.navigationBarHidden = false
+        
+        let plusButton : UIBarButtonItem = UIBarButtonItem(title: "+", style: UIBarButtonItemStyle.Plain, target: self, action: "openModal:")
+        let logButton : UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: "returnHome:")
+        
+        self.navigationItem.leftBarButtonItem = logButton
+        self.navigationItem.rightBarButtonItem = plusButton
+    }
+    
+    /*  OpenModal
+     *
+     *  Opens the NewPlaceViewController as a modal
+     *  excecuted when the + button (on navigation bar) is pressed
+     */
+    func openModal(Sender: UIBarButtonItem!) {
+        let secondViewController:NewPlaceViewController = NewPlaceViewController()
+        self.presentViewController(secondViewController, animated: true, completion: nil)
+    }
+    
+    
+    
+    /*  returnHome
+     *
+     *  navigates back to homescreen
+     */
+    func returnHome(Sender: UIBarButtonItem!) {
+        appDelegate.navigateToHomeScreen()
+        
+    }
+    
+    
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
