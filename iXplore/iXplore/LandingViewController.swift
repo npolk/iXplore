@@ -109,21 +109,36 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         mapView.setRegion(region, animated: true)
     }
     
+    /*-------------- functions for swiping table cell to delete or favorite -----------*/
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        //DELETE TABLE CELL
+        let action1 = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
             //add code here for when you hit delete
-            placesList.removeAtIndex(indexPath.row)
+            self.mapView.removeAnnotation(self.placesList[indexPath.row])
+            self.placesList.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-            
         }
+        action1.backgroundColor = UIColor.redColor()
+        
+        
+        //MAKE FAVORITE
+        let action2 = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
+            print("Action 2 tapped")
+            self.mapView.removeAnnotation(self.placesList[indexPath.row])
+            self.placesList[indexPath.row].favorite = true
+            self.mapView.addAnnotation(self.placesList[indexPath.row])
+        }
+        action2.backgroundColor = UIColor.orangeColor()
+        
+        
+        return [action2, action1]
     }
-    
     
 
 }
