@@ -32,6 +32,7 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        print("\(locationManager.location)")
         
         PlacesController.sharedInstance.getPlaces()
         setupMapView()
@@ -69,7 +70,21 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
             shouldIAllow = true
         }
         
-        
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
+        let lvc = LandingViewController(nibName: "LandingViewController", bundle: nil)
+        lvc.mapView.setRegion(region, animated: true)
+        locationManager!.stopUpdatingLocation()
+        lvc.mapView.showsUserLocation = true
+    }
+    
+    // MARK: locationManager
+    public func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        print("Can't get your location!")
     }
     
     
@@ -261,15 +276,5 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         return [action1, action2]
     }
     
-    
-    /*-------------------------- function to show message alert ------------------------*/
-    func showWarningAlert(title:String?, message:String?, button1:String?, button2:String?) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let cancelAction = UIAlertAction(title: button2, style: .Cancel) { (action) in }
-        alertController.addAction(cancelAction)
-        let OKAction = UIAlertAction(title: button1, style: .Default) { (action) in }
-        alertController.addAction(OKAction)
-        self.presentViewController(alertController, animated: true) {}
-    }
 
 }
