@@ -105,8 +105,10 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
      */
     func openModal(Sender: UIBarButtonItem!) {
         appDelegate.locationManager = locationManager
+        appDelegate.locationManager?.startUpdatingLocation()
         let secondViewController:NewPlaceViewController = NewPlaceViewController()
         self.presentViewController(secondViewController, animated: true, completion: nil)
+        appDelegate.locationManager?.stopUpdatingLocation()
     }
     
     
