@@ -8,14 +8,17 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class CustomPointAnnotation: MKPointAnnotation {
     var imageName: String!
 }
 
-class LandingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, UITextFieldDelegate {
+class LandingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
     
     let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    var locationManager: CLLocationManager!
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -25,6 +28,10 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
         
         PlacesController.sharedInstance.getPlaces()
         setupMapView()
@@ -37,6 +44,34 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*  location Manager
+     *  
+     *  this runs when the alert box (which requests location access) appears
+     *  actions taken depending if user allows or denies
+     */
+    func locationManager(manager:CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        
+        var shouldIAllow:Bool = false
+        
+        switch status {
+        case .Denied:
+            print("User denied access to location")
+            //action
+        case .Restricted:
+            print("Restricted access to location")
+            //action
+        case .NotDetermined:
+            print("Status not determined")
+            //action
+        default:
+            print("Allowed to access location")
+            shouldIAllow = true
+        }
+        
+        
+    }
+    
     
     func setupMapView() {
         self.mapView.mapType = .Hybrid
@@ -69,6 +104,7 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
      *  excecuted when the + button (on navigation bar) is pressed
      */
     func openModal(Sender: UIBarButtonItem!) {
+        appDelegate.locationManager = locationManager
         let secondViewController:NewPlaceViewController = NewPlaceViewController()
         self.presentViewController(secondViewController, animated: true, completion: nil)
     }
@@ -220,7 +256,7 @@ class LandingViewController: UIViewController, UITableViewDelegate, UITableViewD
         action2.backgroundColor = UIColor.orangeColor()
         
         
-        return [action2, action1]
+        return [action1, action2]
     }
     
     

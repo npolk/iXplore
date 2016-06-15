@@ -48,19 +48,23 @@ class PlacesController {
         
     }
     
-    func readPlacesFromMemory() -> [Place] {
-        let array: [Place] = PersistenceManager.loadNSArray("array") as! [Place]
-        return array
+    func readPlacesFromMemory(){
+        let array: [Place]? = PersistenceManager.loadNSArray("array") as? [Place]
+        if array != nil {
+            placesList = array!
+        }
     }
     
     func getPlaces() {
-        
         //if placesList is empty
         if placesList.isEmpty {
-            //call the readPlacesFromMemory before returning the array
-            placesList = readPlacesFromMemory()
             
-            //If the array is still empty after reading the disk, return testing data
+            //read places from memory
+            readPlacesFromMemory()
+            
+            //if places exist in memory, placeList is now updated
+            
+            //if no places in memory, populate placeList with text date
             if placesList.isEmpty {
                 placesList = Place.placeList()
             }
